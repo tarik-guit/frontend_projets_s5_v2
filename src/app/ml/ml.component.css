@@ -1,0 +1,21 @@
+.back{
+  background-image: url(../../assets/images/ai.jpg);
+  background-attachment: scroll;
+  background-position:center;
+  background-size: cover;
+  widows: 100%;
+  height: 100vh;
+}
+
+.cercle{
+  border:3px solid blue;
+  border-radius: 50%;
+  background: white;
+  width: 240px;
+    height: 240px;
+    position: absolute;
+    top: 61%;
+    left: 40%;
+    opacity: .5;
+
+}

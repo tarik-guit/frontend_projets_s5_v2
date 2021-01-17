@@ -1,0 +1,19 @@
+.marginleft3{
+
+  margin-left:550px;
+
+}
+
+.alerts{
+  margin-left:20%;
+  margin-right: 20%;
+}
+a{
+  color:white;
+     text-decoration:none;
+     cursor:pointer;
+     font-size: 16pt;
+}
+a:hover{
+  color: rgb(119, 177, 231);
+}

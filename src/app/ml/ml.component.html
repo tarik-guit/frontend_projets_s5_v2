@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+<!--header au dessus-->
+
+<router-outlet></router-outlet>
+
+<div class="back">
+<!-- <div class="cercle" (click)="onTrain()">
+
+</div> -->
+
+<div class="p-2" style="background: white;opacity: .8;">
+  <div class="d-flex justify-content-center">
+  <h3 class="text-center">Vos informations personnelles</h3>
+</div>
+      <table class="table" >
+        <thead style="background:salmon;">
+          <tr>
+            <th scope="col">age</th>
+            <th scope="col">sex</th>
+            <th scope="col">Type de douleur thoracique</th>
+            <th scope="col">Tension</th>
+            <th scope="col">Diabétique</th>
+            <th scope="col">BPM</th>
+            <th scope="col">Taille</th>
+            <th scope="col">Poids</th>
+            <th scope="col">Fumeur</th>
+            <th scope="col">Cholesterol total</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>{{details?.age}}</td>
+            <td *ngIf="details?.sex === false">Femme</td> <td *ngIf="details?.sex === true">Homme</td>
+            <td>{{details?.chestPain}}</td>
+            <td>{{details?.bloodPressure}}</td>
+            <td *ngIf="details?.diabetique === false">non</td> <td *ngIf="details?.diabetique === true">oui</td>
+            <td>{{details?.maximumHeart}}</td>
+            <td>{{details?.taille}} (m)</td>
+            <td>{{details?.poids}}</td>
+            <td *ngIf="details?.fumeur === false">non</td> <td *ngIf="details?.fumeur === true">oui</td>
+            <td>{{cholest}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+    <div style="text-align: center;background: white;opacity: .8;padding:10px;">
+      <h1>Cardiologie Model - Logistic Regression</h1>
+
+      <div class="home_training">
+          <h3>Train Classification Model (Logistic Regression)</h3>
+
+              <h5 style="font-style: italic; color: salmon">Cliquer sur le bouton pour charger vos données</h5>
+
+
+
+              <button  (click)="trainModel()">
+                  Charger
+              </button>
+
+
+          <div *ngIf="svcResult">
+           <div class="alert alert-info mt-3"  role="alert">
+              voici le taux de l'entraînement {{svcResult.accuracy}} %
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div  style="text-align: center;background: white;opacity: .8;padding:10px;" *ngIf="prediction">
+
+      <h3>Prévoir votre maladie cardiaque</h3>
+
+
+          <div>
+              <button class="btn btn-primary" (click)="predictIris()">Predict cardiac</button>
+          </div>
+
+
+      <div *ngIf="probabilityPredictions" >
+          <h4 class="mt-3 mb-3" style="color: salmon">Vos résultats :</h4>
+      <div>
+          <div class="alert alert-success" role="alert" *ngIf="!prediMsg">
+             {{message}}
+            </div>
+          <div class="alert alert-danger" role="alert" *ngIf="prediMsg">
+               {{message}}
+            </div>
+
+
+          <br>
+        </div>
+      </div>
+  </div>
+
+
+</div>

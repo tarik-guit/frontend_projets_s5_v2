@@ -1,0 +1,385 @@
+<!--header-->
+<app-navbar></app-navbar>
+<!--header au dessus-->
+
+<router-outlet></router-outlet>
+
+
+<div class="text-center m-auto" style="width:60%">
+<div class="alert alert-primary mt-4 mb-4" role="alert" *ngIf="choix" >
+  <span>Le patient choisi est d'ID : {{id}} </span>
+</div>
+
+<div class="alert alert-danger mt-4 mb-4" role="alert" *ngIf="!choix">
+  Attention! , vous n'avez pas choisi un patient
+</div>
+</div>
+<div class="container">
+<div class="mt-5 mb-5 " style="border:1px solid #ddd;height:500px" *ngIf="next2">
+
+        <h3 class="btn-primary"  style="background:#2682C4;padding: 10px;">Ajouter vos données</h3>
+<div class="p-3">
+    <div class="alert alert-danger" role="alert" *ngIf="Failed1">
+        {{errorMessage}}
+      </div>
+  <form name="form"
+   #f="ngForm"
+  novalidate
+
+  (ngSubmit)=" f.form.valid && save1()">
+
+    <div class="row mt-3">
+      <div class="col">
+    <div class="form-group">
+
+      <input type="number"  class="form-control" id="exampleInputAge1" name="age"  placeholder="saisir votre age" [(ngModel)]="form.age" #age1="ngModel" required>
+      <small *ngIf="age1.touched && age1.errors?.required " style="color:red">entrer l'age !</small>
+
+    </div>
+  </div>
+  <div class="col">
+
+
+      <div class="input-group mb-3 ">
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"><img class="sex" src="assets/images/femme.png"> <img class="sex" src="assets/images/homme.png"></label>
+          </div>
+          <select id="exampleInputSex1" name="sex" [(ngModel)]="sex" class="custom-select" #sex1="ngModel" required>
+            <option selected>Choose...</option>
+            <option >Homme</option>
+            <option >Femme</option>
+          </select>
+
+        </div>
+        <small *ngIf="sex1.touched && sex1.errors?.required" style="color:red">entrer le genre !</small>
+    </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col">
+    <div class="form-group">
+      <label for="exampleInputChest1">
+          Type de douleur thoracique<a (click)="chestPain1()" class="whatis">(what is it ?) </a></label>
+      <select class="form-control" id="exampleInputChest1" name="chestPain" [(ngModel)]="chestPain" #chestPain2="ngModel" required>
+          <option></option>
+          <option>indigestion</option>
+          <option>entorse</option>
+          <option>anxiété</option>
+          <option>infection pulmonaire</option>
+
+        </select>
+
+    </div>
+    <small *ngIf="chestPain2.touched && chestPain2.errors?.required" style="color:red">entrer la douleur thoracique !</small>
+  </div>
+  <!-- Button trigger modal -->
+<button type="button" [hidden]="true" class="btn btn-primary" id="chest" data-toggle="modal" data-target="#exampleModalCenter1">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Type de douleur thoracique</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table " >
+                <thead>
+                  <tr>
+                    <th scope="col">Symptômes de douleur thoracique</th>
+                    <th scope="col">Type</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+
+                    <td>Commence après avoir mangé ,apporté de la nouritture ou des liquides au goût amer, une sensation de satiété et de ballonnement</td>
+                    <td>brulûres d'estomac ou indigestion</td>
+
+                  </tr>
+                  <tr>
+
+                    <td>Commence après une blessure à la poitrine ou un exercice thoracique , se sent mieux au repos du muscle  </td>
+                    <td>entorse ou foulure thoracique</td>
+
+                  </tr>
+                  <tr>
+
+                    <td>Déclenché par des inquiétudes ou une situation stressante , le rythme cardiaque s'accélère , transpiration,étourdissements</td>
+                    <td>anxiété ou crise de panique</td>
+
+                  </tr>
+
+                  <tr>
+
+                      <td>S'aggrave lorsque vous inspirez et expirez, crachez du mucus jaune ou vert ,température élevée</td>
+                      <td>infection pulmonaire ou pneumonie</td>
+
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class="form-group">
+        <label for="exampleInputTension1">Tension systolique (systolique/diastolique)</label>
+        <input type="text" #bloodPressure="ngModel" class="form-control" id="exampleInputTension1"  name="bloodPressure" placeholder="saisir tension" [(ngModel)]="form.bloodPressure" #tension1="ngModel" required>
+        <small *ngIf="tension1.touched && tension1.errors?.required" style="color:red">entrer la tension !</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col">
+    <div class="form-group">
+      <label for="exampleInputDiab1">Diabétique</label>
+      <select class="form-control" id="exampleInputDiab1" name="diabetique" [(ngModel)]="diabetique" #diabetique1="ngModel" required>
+          <option></option>
+          <option>oui</option>
+          <option>non</option>
+
+        </select>
+    </div>
+    <small *ngIf="diabetique1.touched && diabetique1.errors?.required" style="color:red">entrer votre situation diabétique !</small>
+  </div>
+  <div class="col">
+    <div class="form-group">
+        <label for="exampleInputHeart1"> Fréquence cardiaque maximale(par minutes) <a (click)="bpm()" class="whatis"> (what is it ?)</a></label>
+        <input type="number" #maximumHeart="ngModel" class="form-control" id="exampleInputHeart1" name="maximumHeart"  placeholder="saisir max heart rate" [(ngModel)]="form.maximumHeart" #heart1="ngModel" required>
+        <small *ngIf="heart1.touched && heart1.errors?.required" style="color:red">entrer votre fréquence cardiaque !</small>
+      </div>
+
+      <!-- Button trigger modal -->
+<button type="button" [hidden]="true" id="bpm" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Max (BPM)</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <strong>il est important de connaître max des battements de coeur?</strong>
+            <br>
+            En plein effort lors de votre séance de marche rapide, votre a des besoins en oxygène plus important. C’est pourquoi ses battements augmentent et la fréquence cardiaque maximale est atteinte lorsque l’oxygène produit par votre cœur n’est plus suffisant pour alimenter les muscles.
+
+            Au-dessus de la zone d’endurance, les muscles ne sont donc plus alimentés correctement en oxygène, nécessaire pour profiter de tous les bienfaits de la marche rapide, comme vous l’explique le médecin du sport Charles Aisenberg.
+
+            La bonne nouvelle est qu’en marche rapide, vous êtes la plupart du temps dans le domaine de l’endurance, et c’est pourquoi ce sport est reconnu comme l’activité physique idéale.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <label for="exampleInputAngina1">Angina <a (click)="angina1()" class="whatis">(what is it ?)</a></label>
+            <select class="form-control" id="exampleInputAngina1" name="angina" [(ngModel)]="angina" #angina2="ngModel" required>
+                <option></option>
+                <option>oui</option>
+                <option>non</option>
+
+              </select>
+          </div>
+          <small *ngIf="angina2.touched && angina2.errors?.required" style="color:red">entrer l'angina !</small>
+        </div>
+
+        <button type="button" [hidden]="true" id="angina" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter3">
+            Launch demo modal
+          </button>
+        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Angina</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                L'angine survient lorsqu'il n'y a pas
+                suffisamment de sang riche en oxygène s'écoulant vers
+                une partie de votre cœur. L'angine est causée
+                par des artères coronaires rétrécies.
+                <br>
+                <strong> Symptômes </strong>
+                <br>
+
+                    inconfort
+                    <br>
+                    étanchéité
+                    <br>
+                    pression
+                    <br>
+                    serrant
+                    <br>
+                    lourdeur
+                    <br>
+                    douleur sourde
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+  </div>
+
+  <div class="row">
+      <div class="col">
+    <div class="form-group">
+      <label for="exampleInputTaille1">Taille(m)</label>
+      <input type="text" #taille="ngModel" class="form-control" id="exampleInputTaille1" name="taille" placeholder="Ex. 1.60" [(ngModel)]="form.taille" #taille1="ngModel" required>
+      <small *ngIf="taille1.touched && taille1.errors?.required" style="color:red">entrer votre taille !</small>
+      <small *ngIf="tt" style="color:red">entrer une correcte format !</small>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+        <label for="exampleInputPoids1">Poids(kg)</label>
+        <input type="number" #poids="ngModel" class="form-control" id="exampleInputPoids1" name="poids" placeholder="saisir Poids" [(ngModel)]="form.poids" #poids1="ngModel" reuqired>
+        <small *ngIf="poids1.touched && poids1.errors?.required" style="color:red">entrer votre poids !</small>
+
+      </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <label for="exampleInputFumeur1">fumeur</label>
+            <select class="form-control" id="exampleInputFumeur1" name="fumeur" [(ngModel)]="fumeur" #fum="ngModel" required>
+                <option></option>
+                <option>oui</option>
+                <option>non</option>
+
+              </select>
+          </div>
+          <small *ngIf="fum.touched && fum.errors?.required" style="color:red">sélectionnez un champ !</small>
+        </div>
+  </div>
+    <button type="submit"  class="btn btn-primary mt-4 mb-1" style="float: right;">enregistrer et continuer</button>
+  </form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mt-5 mb-5" style="border:1px solid #ddd;height:auto" *ngIf="next1">
+    <div class="alert alert-danger" role="alert" *ngIf="Failed2">
+        {{errorMessage}}
+      </div>
+  <form name="form1"
+   #f1="ngForm"
+  novalidate
+
+  (ngSubmit)="f1.form.valid && save2()">
+
+
+
+        <h3 class="btn-primary" style="background:#2682C4;padding: 10px;">Votre bilan lipide <a (click)="bilanLipide()" style="color:white" class="whatis">(what is it ?)</a></h3>
+
+
+    <div class="p-2" style="border:1px solid gainsboro" *ngIf="bilan">
+      <h3>Qu'est-ce que le cholestérol?</h3>
+<p>Le cholestérol est souvent associé à une maladie cardiaque. C'est parce que les lipoprotéines de basse densité (LDL) peuvent s'accumuler dans vos artères et restreindre ou bloquer le flux sanguin. Votre corps a encore besoin d'un peu de cholestérol pour une digestion saine et pour fabriquer de la vitamine D et certaines hormones.</p>
+       <h3>Comprendre vos résultats</h3>
+       <p>
+        Il faut généralement plusieurs jours, voire quelques semaines, pour récupérer les résultats de vos tests sanguins. Votre rapport de laboratoire affichera votre taux de cholestérol sérique en milligrammes par décilitre (mg / dL). Votre cholestérol sérique comprend:
+        <br>
+        Niveau LDL
+        <br>
+        Niveau HDL
+        <br>
+        20 pour cent de votre taux de triglycérides
+        <br>
+        Plus le niveau LDL est bas et plus le niveau HDL est élevé, mieux c'est. Le LDL est le type de cholestérol qui forme une plaque cireuse sur la paroi interne d'une artère. Trop de plaque peut limiter le flux sanguin dans cette artère.
+        <br>
+        La plaque peut également se rompre, déversant son contenu de cholestérol, de graisses et de déchets dans le vaisseau sanguin. Lorsque les plaquettes se précipitent vers la blessure, un caillot sanguin peut se former. Les plaquettes sont un type de cellule présente dans le sang. Si le caillot se trouve dans une artère du cœur, appelée artère coronaire, une crise cardiaque peut survenir. Si le caillot se déplace vers le cerveau et bloque la circulation sanguine, le résultat est un accident vasculaire cérébral.</p>
+    </div>
+    <div class="row p-2">
+      <div class="col">
+    <div class="form-group">
+      <label for="exampleHdl">HDL(mg/dL)</label>
+      <input type="number"  class="form-control" id="exampleHdl" name="hdl"  #hdl1="ngModel"   placeholder="saisir Hdl" [(ngModel)]="form1.hdl" required>
+      <small *ngIf="hdl1.touched && hdl1.errors?.required" style="color:red">Remplissez le champ !</small>
+    </div>
+  </div>
+
+  <div class="col">
+      <div class="form-group">
+        <label for="exampleLdl">LDL(mg/dL)</label>
+        <input type="number"  class="form-control" id="exampleLdl" name="ldl" #ldl1="ngModel" placeholder="saisir Ldl" [(ngModel)]="form1.ldl" required>
+        <small *ngIf="ldl1.touched && ldl1.errors?.required" style="color:red">Remplissez le champ !</small>
+
+      </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+          <label for="exampleTriglicerides">Triglycérides(mg/dL)</label>
+          <input type="number"  class="form-control" id="exampleTriglicerides" #tri1="ngModel" name="triglycerides"  placeholder="saisir Triglycérides" [(ngModel)]="form1.triglycerides" required>
+          <small *ngIf="tri1.touched && tri1.errors?.required" style="color:red">Remplissez le champ !</small>
+
+        </div>
+      </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary"  style="background:#2682C4;">enregistrer et continuer</button>
+
+  </form>
+</div>
+</div>
+
+
+<!-- ################################################################### -->
+
+
+
+
+
+
+<!-- <ng-template #loggedOut>
+<div class="card mt-5 pt-5" style="width: 18rem;margin:auto" >
+    <img class="card-img-top" src="assets/images/broken.png" style="width:80px;height:auto;margin: auto" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Vous êtes déconnecté</h5>
+
+      <a href="login" class="btn btn-primary" style="margin-left:35%">login</a>
+    </div>
+  </div>
+</ng-template> -->
+
+
+
+
+

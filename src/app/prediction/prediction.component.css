@@ -1,0 +1,31 @@
+.whatis{
+  color: rgb(12, 48, 209);
+  font-size: 13px;
+  cursor: pointer;
+}
+.whatis:hover{
+  color:red;
+}
+input,
+input::-webkit-input-placeholder {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+select,
+select::-webkit-input-placeholder {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+
+
+.table th{
+  border-top: none !important;
+}
+.sex{
+  width:20px;
+  height:auto;
+}

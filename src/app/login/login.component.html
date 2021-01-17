@@ -1,0 +1,61 @@
+<div class="container marge w-50">
+  <div class="row card ">
+    <div class="col card-body">
+      <form *ngIf="quelformulaire==1">
+        <fieldset><legend  class="police">Login</legend></fieldset>
+        <div class="form-group">
+          <label class="police2">Username</label>
+          <input name="username" type="text"  class="form-control" [(ngModel)]="signinrequest.username">
+        </div>
+        <div class="form-group">
+          <label class="police2">Password</label>
+          <input name="password" type="password"  class="form-control" [(ngModel)]="signinrequest.password">
+        </div>
+        <div class="form-group d-inline mr-2">
+          <button class="btn btn-outline-warning" (click)="login(signinrequest)" >Login</button>
+        </div>
+        <div class="form-group d-inline">
+          <button class="btn btn-outline-warning" (click)="tologup()">go to Inscription</button>
+        </div>
+
+      </form>
+      <!--form logup:ce qui suit-->
+      <form *ngIf="quelformulaire==2">
+        <fieldset><legend  class="police">Logup</legend></fieldset>
+        <div class="form-group">
+          <label class="police2">Username</label>
+          <input name="username" type="text"  class="form-control" [(ngModel)]="signuprequest.username">
+        </div>
+        <div class="form-group">
+          <label class="police2">Email</label>
+          <input name="email" type="text"  class="form-control" [(ngModel)]="signuprequest.email">
+        </div>
+        <div class="form-group">
+          <label class="police2">Password</label>
+          <input name="password" type="text"  class="form-control" [(ngModel)]="signuprequest.password">
+        </div>
+        <div class="form-group d-inline mr-2">
+          <button class="btn btn-outline-warning" (click)="logup(signuprequest)" >Logup</button>
+        </div>
+        <div class="form-group d-inline">
+          <button class="btn btn-outline-warning" (click)="tologin()">return to Login</button>
+        </div>
+        <div class="alert alert-danger" role="alert"  *ngIf="quelalerte==1">
+          {{errorlogup}}
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="quelalerte==2" >
+          {{logupreussi}}
+        </div>
+
+      </form>
+
+
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
