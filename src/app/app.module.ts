@@ -21,6 +21,7 @@ import {AuthenticationService} from "../securityjwt/services/AuthenticationServi
 import {servicelog} from "../securityjwt/services/servicelog";
 import {ErrorInterceptor} from "../securityjwt/aide/ErrorInterceptor";
 import {JwtInterceptor} from "../securityjwt/aide/JwtInterceptor";
+import {GraheService} from "../services/graheService";
 
 
 
@@ -48,7 +49,12 @@ import {JwtInterceptor} from "../securityjwt/aide/JwtInterceptor";
 
 
   ],
-  providers: [choix_service,dataPrediction,MlData,AuthenticationService,servicelog,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  providers: [choix_service,
+    dataPrediction,
+    MlData,
+    AuthenticationService,
+    GraheService,
+    servicelog,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

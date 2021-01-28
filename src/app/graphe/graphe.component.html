@@ -1,7 +1,26 @@
 <!--header-->
 <app-navbar></app-navbar>
 <!--header au dessus-->
-<h1>graphe </h1>
+<div class="text-center alert alert-primary mt-4 mb-4" *ngIf="chart" >
+  <span>Niveau HDL , LDL , triglycerides</span>
+</div>
+<div class ='container' *ngIf="chart">
+  <canvas id="canvas">{{chart}}</canvas>
+</div>
+<div class="text-center alert alert-primary mt-4 mb-4" *ngIf="chart1" >
+  <span> le cholestérol </span>
+</div>
+<div class ='container' *ngIf="chart1">
+  <canvas id="canvas1">{{chart1}}</canvas>
+</div>
+<div class="text-center alert alert-primary mt-4 mb-4" *ngIf="chart1" >
+  <span> le Poids </span>
+</div>
+<div class ='container' *ngIf="chart3">
+  <canvas id="canvas3">{{chart3}}</canvas>
+</div>
+
+
 
 
 
